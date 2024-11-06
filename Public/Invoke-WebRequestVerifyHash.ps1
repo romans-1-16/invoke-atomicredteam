@@ -4,7 +4,7 @@ function Invoke-WebRequestVerifyHash ($url, $outfile, $hash) {
 	}
     $success = $false
     $null = @(
-        New-Item -ItemType Directory (Split-Path $outfile) -Force | Out-Null
+        New-Item -ItemType Directory (Split-Path $outfile) -ErrorAction Ignore -Force | Out-Null
         $ms = New-Object IO.MemoryStream
         [Net.ServicePointManager]::SecurityProtocol = ([Net.ServicePointManager]::SecurityProtocol -bor [Net.SecurityProtocolType]::Tls11 -bor [Net.SecurityProtocolType]::Tls12)
         (New-Object System.Net.WebClient).OpenRead($url).copyto($ms)
