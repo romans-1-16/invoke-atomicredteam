@@ -10,7 +10,7 @@ function Invoke-WebRequestVerifyHash ($url, $outfile, $hash) {
         (New-Object System.Net.WebClient).OpenRead($url).copyto($ms)
         $ms.seek(0, [System.IO.SeekOrigin]::Begin) | Out-Null
         $actualHash = (Get-FileHash -InputStream $ms).Hash
-        if ( ($hash -eq $actualHash) -or ($hash -eq $null)) {
+        if (($hash -eq $actualHash) -or ($hash -eq $null)) {
             $ms.seek(0, [System.IO.SeekOrigin]::Begin) | Out-Null
             $fileStream = New-Object IO.FileStream $outfile, ([System.IO.FileMode]::Create)
             $ms.CopyTo($fileStream);
