@@ -17,3 +17,5 @@ COPY ./default.conf /etc/nginx/conf.d/default.conf
 
 COPY ./nginx-setup .
 RUN ["/bin/bash", "-c", "source ./nginx-setup"]
+
+CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
