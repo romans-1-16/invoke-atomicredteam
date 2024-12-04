@@ -1,6 +1,6 @@
 #!/bin/bash
 # Setup nginx
-Invoke-AtomicTest T1003-1,2 -GetPrereqs -Verbose -anyOS
-Invoke-AtomicTest T1003.001-1,3,4,6,8,9 -GetPrereqs -Verbose -anyOS
+#Invoke-AtomicTest T1003-1,2 -GetPrereqs -Verbose -anyOS
+#Invoke-AtomicTest T1003.001-1,3,4,6,8,9 -GetPrereqs -Verbose -anyOS
 sudo chmod 755 /root/ /root/AtomicRedTeam/ /root/AtomicRedTeam/ExternalPayloads/
 sudo systemctl enable nginx.service

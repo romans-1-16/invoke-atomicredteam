@@ -11,8 +11,9 @@ RUN ./setup.ps1
 
 COPY ./nginx-install .
 RUN ["/bin/bash", "-c", "source ./nginx-install"]
+#RUN /bin/bash -c "./install-nginx"
 
-#COPY ./default.conf /etc/nginx/conf.d/default.conf
+COPY ./default.conf /etc/nginx/conf.d/default.conf
 
-#COPY ./nginx-setup .
-#RUN ["/bin/bash", "-c", "source ./nginx-setup"]
+COPY ./nginx-setup .
+RUN ["/bin/bash", "-c", "source ./nginx-setup"]
