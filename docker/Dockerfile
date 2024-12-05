@@ -9,13 +9,19 @@ RUN New-Item $PROFILE -Force
 COPY ./setup.ps1 .
 RUN ./setup.ps1
 
+SHELL ["/bin/bash", "-c"]
+
 COPY ./nginx-install .
 RUN ["/bin/bash", "-c", "source ./nginx-install"]
 #RUN /bin/bash -c "./install-nginx"
 
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 
-COPY ./nginx-setup .
-RUN ["/bin/bash", "-c", "source ./nginx-setup"]
+USER root
+RUN mkdir -m 755 /root/AtomicRedTeam/ExternalPayloads/
+RUN chmod 755 /root/ /root/AtomicRedTeam/ 
 
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+#COPY ./nginx-setup .
+#RUN ["/bin/bash", "-c", "source ./nginx-setup"]
+
+#CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
