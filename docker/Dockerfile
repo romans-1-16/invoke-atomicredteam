@@ -18,10 +18,12 @@ RUN ["/bin/bash", "-c", "source ./nginx-install"]
 COPY ./default.conf /etc/nginx/conf.d/default.conf
 
 USER root
-RUN mkdir -m 755 /root/AtomicRedTeam/ExternalPayloads/
-RUN chmod 755 /root/ /root/AtomicRedTeam/ 
+RUN mkdir -m 755 /root/AtomicRedTeam/ExternalPayloads/; chmod 755 /root/ /root/AtomicRedTeam/
 
-#COPY ./nginx-setup .
-#RUN ["/bin/bash", "-c", "source ./nginx-setup"]
+#CMD ["nginx", "-g", "daemon off;"]
 
-#CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+COPY ./docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
+ENTRYPOINT ["/docker-entrypoint.sh"]
+
+CMD ["/bin/bash"]
