@@ -1,8 +1,13 @@
 FROM  mcr.microsoft.com/powershell:latest
 SHELL ["pwsh", "-Command"]
 # -- Install Atomic Red Team from pwsh
-RUN IEX (IWR 'https://raw.githubusercontent.com/romans-1-16/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing); \
-    Install-AtomicRedTeam -getAtomics
+#RUN IEX (IWR 'https://raw.githubusercontent.com/romans-1-16/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing); \
+#    Install-AtomicRedTeam -getAtomics
+
+COPY ./install-atomicredteam.ps1 .
+COPY ./install-atomicsfolder.ps1 .
+
+RUN IEX (Get-Content -Raw ./install-atomicredteam.ps1); Install-AtomicRedTeam -getAtomics
 
 RUN New-Item $PROFILE -Force
 
