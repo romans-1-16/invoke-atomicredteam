@@ -12,6 +12,7 @@ RUN ./setup.ps1
 SHELL ["/bin/bash", "-c"]
 
 COPY ./nginx-install .
+RUN chmod +x /nginx-install
 RUN ["/bin/bash", "-c", "source ./nginx-install"]
 #RUN /bin/bash -c "./install-nginx"
 
